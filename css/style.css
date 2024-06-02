@@ -7,11 +7,20 @@ body {
     background-color: rgb(230, 170, 102);
 
     .headerIndex {
+        height: 25vh;
         background-image: url(../assets/images/banner.jpg);
-        background-size: contain;
+        background-size: cover;
+        object-fit: cover;
+        background-position: center;
+    }
+
+    .mainIndex{
+        height: 70vh;
     }
 
     .footerIndex {
+        height: 5vh;
         background-color: black;
+        color: white;
     }
 }
