@@ -1,6 +1,6 @@
 //Capturo el id "footer" y le agrego la clase "footer"
 const footer = document.getElementById('footer');
-footer.classList.add('footer');
+// footer.classList.add('footer');
 
 //Creo un div y le agrego una clase de bootstrap
 const divFooter = document.createElement('div');
@@ -14,6 +14,6 @@ const pFooter = document.createElement('p');
 pFooter.innerHTML = "Todos los derechos reservados <i class='fa-regular fa-copyright'></i>";
 
 //Anido
-footer.appendChild(divFooter);
+// footer.appendChild(divFooter);
 divFooter.appendChild(sectionFooter);
 sectionFooter.appendChild(pFooter);
