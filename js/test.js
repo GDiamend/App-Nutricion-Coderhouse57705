@@ -60,13 +60,16 @@ testForm.appendChild(divTestHeight);
 divTestHeight.appendChild(labelTestHeight);
 divTestHeight.appendChild(inputTestHeight);
 
-//Le asigno un type y un id a los input
+//Le asigno un type y un id a los input, también les agrego required
 inputTestName.type = 'text';
 inputTestName.id = 'inputTestName';
+inputTestName.required = true;
 inputTestWeight.type = 'number';
 inputTestWeight.id = 'inputTestWeight';
+inputTestWeight.required = true;
 inputTestHeight.type = 'number';
 inputTestHeight.id = 'inputTestHeight';
+inputTestHeight.required = true;
 
 //Le asigno contenido a los label y los asocio a los input
 labelTestName.htmlFor = 'inputTestName';
@@ -95,13 +98,13 @@ class Person {
 
     showResult() {
         if (this.imc < 18.5) {
-            console.log(this.name + ", usted está por debajo de su peso normal");
+            return this.name + ", su imc es " + this.imc + ", usted está por debajo de su peso normal";
         } else if (this.imc >= 18.5 && this.imc < 24.9) {
-            console.log(this.name + ", usted está en su peso normal");
+            return this.name + ", su imc es " + this.imc + ", usted está en su peso normal";
         } else if (this.imc >= 25 && this.imc < 29.9) {
-            console.log(this.name + ", usted está en sobrepeso");
+            return this.name + ", su imc es " + this.imc + ", usted está en sobrepeso";
         } else {
-            console.log(this.name + ", usted padece obesidad");
+            return this.name + ", su imc es " + this.imc + ", usted padece obesidad";
         }
     };
 };
@@ -109,12 +112,18 @@ class Person {
 //Función de orden superior
 const calculateImc = (weight, height) => {
     height /= 100;
-    return (weight / (height * height));
+    return Math.floor((weight / (height * height)) * 100) / 100;;
 };
 
 //Agrego el evento al submit
 testForm.addEventListener('submit', (e) => {
     e.preventDefault();
+
+    //Controlo mediante un id si el div tiene contenido, en caso de que sí, lo elimino para que no haya multiples respuetas
+    const existingDivTestResult = document.getElementById('divTestResult');
+    if (existingDivTestResult) {
+        existingDivTestResult.remove();
+    }
 
     // Creo una Persona tomando los datos ingresados en los input
     const user = new Person(
@@ -124,5 +133,21 @@ testForm.addEventListener('submit', (e) => {
         calculateImc(parseFloat(inputTestWeight.value), parseFloat(inputTestHeight.value))
     );
 
-    user.showResult();
+    //Creo un div y un h3 para mostrar el resultado del IMC
+    const divTestResult = document.createElement('div');
+    //Le agrego un id para poder usar el 'if'
+    divTestResult.id = 'divTestResult';
+    const h3TestResult = document.createElement('h3');
+    divTestForm.appendChild(divTestResult);
+    divTestResult.appendChild(h3TestResult);
+
+    h3TestResult.innerText = user.showResult();
+
+    //Creo un div con un texto y un ancla para ofrecer al usuario Libros y Guías
+    const divTestRedirectAnchor = document.createElement('div');
+    const anchorTestRedirect = document.createElement('a');
+    anchorTestRedirect.innerText = "Ir a Libros";
+    anchorTestRedirect.href = '../pages/book.html';
+    divTestResult.appendChild(divTestRedirectAnchor);
+    divTestRedirectAnchor.appendChild(anchorTestRedirect);
 });
