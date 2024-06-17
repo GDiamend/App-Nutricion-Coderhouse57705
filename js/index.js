@@ -1,4 +1,4 @@
-//Caputo el id "headerIndex" y le agrego la clase "headerIndex"
+//Capturo el id "headerIndex" y le agrego la clase "headerIndex"
 const headerIndex = document.getElementById('headerIndex');
 headerIndex.classList.add('headerIndex');
 
@@ -16,26 +16,6 @@ h1Index.innerText = "Planifica tu Dieta con Nuestras Guías de Nutrición";
 //Anido
 mainIndex.appendChild(divH1Index);
 divH1Index.appendChild(h1Index);
-
-//Capturo el id "footerIndex" y le agrego la clase "footerIndex"
-const footerIndex = document.getElementById('footerIndex');
-footerIndex.classList.add('footerIndex');
-
-//Creo un div y le agrego una clase de bootstrap
-const divFooter = document.createElement('div');
-divFooter.classList.add('text-end');
-
-//Creo una section y le agrego un p
-const sectionFooter = document.createElement('section');
-const pFooter = document.createElement('p');
-
-//Le agrego contenido al p y logo de copyright
-pFooter.innerHTML = "Todos los derechos reservados <i class='fa-regular fa-copyright'></i>";
-
-//Anido
-footerIndex.appendChild(divFooter);
-divFooter.appendChild(sectionFooter);
-sectionFooter.appendChild(pFooter);
 
 //Creo un div en el que se veran los datos que va ingresando el usuario vía prompt
 const divDatosUsuario = document.createElement('div');
@@ -107,13 +87,6 @@ const obtenerNombre = () => {
     return prompt("Por favor ingrese su nombre");
 };
 
-const obtenerGenero = () => {
-    do {
-        genero = prompt("Por favor ingrese su género. F por Femenino, M por Masculino");
-    } while (genero.toUpperCase() != "F" && genero.toUpperCase() != "M");
-    return genero;
-};
-
 const obtenerPeso = () => {
     do {
         peso = prompt("Por favor ingrese su peso. Debe ser mayor a 0 y menor a 400");
@@ -134,7 +107,7 @@ const calcularImc = (peso, altura) => {
 };
 
 //Creo una Persona tomando los datos ingresados vía prompt
-const usuario = new Persona(obtenerNombre(), obtenerGenero(), obtenerPeso(), obtenerAltura(), calcularImc(peso, altura));
+// const usuario = new Persona(obtenerNombre(), obtenerGenero(), obtenerPeso(), obtenerAltura(), calcularImc(peso, altura));
 
 //Actualizo los datos en el html
 pNombre.innerText += usuario.nombre;

@@ -3,10 +3,12 @@
     padding: 0;
 }
 
+
+
 body {
     background-color: rgb(230, 170, 102);
 
-    .headerIndex {
+    header {
         height: 25vh;
         background-image: url(../assets/images/banner.jpg);
         background-size: cover;
@@ -14,11 +16,11 @@ body {
         background-position: center;
     }
 
-    .mainIndex{
+    main {
         height: 70vh;
     }
 
-    .footerIndex {
+    footer {
         height: 5vh;
         background-color: black;
         color: white;
