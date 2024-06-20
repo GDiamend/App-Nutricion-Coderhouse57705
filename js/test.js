@@ -1,13 +1,13 @@
 //Capturo el body
-const body = document.body;
+const testBody = document.body;
 
 //Creo el header y lo agrego al body
 const testHeader = document.createElement('header');
-body.appendChild(testHeader);
+testBody.appendChild(testHeader);
 
 //Creo el main y lo agrego al body
 const testMain = document.createElement('main');
-body.appendChild(testMain);
+testBody.appendChild(testMain);
 
 //Creo un div, un h1; le agrego contenido y los anido al main
 const divTestH1 = document.createElement('div');
@@ -21,11 +21,11 @@ const divTestForm = document.createElement('div');
 testMain.appendChild(divTestForm);
 
 //Creo un div, un h2; le agrego contenido y los anido al div del form
-const divTestH2 = document.createElement('div');
+const divTestH2Form = document.createElement('div');
 const h2TestForm = document.createElement('h2');
 h2TestForm.innerText = "Introduce tus datos al formulario de cálculo de IMC";
-divTestForm.appendChild(divTestH2);
-divTestH2.appendChild(h2TestForm);
+divTestForm.appendChild(divTestH2Form);
+divTestH2Form.appendChild(h2TestForm);
 
 //Creo un div con un form y le agrego los input necesarios con sus correspondientes label
 //cada uno dentro de un div
@@ -84,6 +84,7 @@ const divTestButton = document.createElement('div');
 const buttonTestForm = document.createElement('input');
 buttonTestForm.type = 'submit';
 buttonTestForm.value = 'Calcular';
+buttonTestForm.className = 'btnColor';
 testForm.appendChild(divTestButton);
 divTestButton.appendChild(buttonTestForm);
 
@@ -119,7 +120,7 @@ const calculateImc = (weight, height) => {
 testForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    //Controlo mediante un id si el div tiene contenido, en caso de que sí, lo elimino para que no haya multiples respuetas
+    //Controlo mediante un id si el div tiene contenido, en caso de que sí, lo elimino para que no haya multiples respuestas
     const existingDivTestResult = document.getElementById('divTestResult');
     if (existingDivTestResult) {
         existingDivTestResult.remove();
@@ -133,21 +134,17 @@ testForm.addEventListener('submit', (e) => {
         calculateImc(parseFloat(inputTestWeight.value), parseFloat(inputTestHeight.value))
     );
 
-    //Creo un div y un h3 para mostrar el resultado del IMC
-    const divTestResult = document.createElement('div');
-    //Le agrego un id para poder usar el 'if'
-    divTestResult.id = 'divTestResult';
-    const h3TestResult = document.createElement('h3');
-    divTestForm.appendChild(divTestResult);
-    divTestResult.appendChild(h3TestResult);
-
-    h3TestResult.innerText = user.showResult();
-
-    //Creo un div con un texto y un ancla para ofrecer al usuario Libros y Guías
-    const divTestRedirectAnchor = document.createElement('div');
-    const anchorTestRedirect = document.createElement('a');
-    anchorTestRedirect.innerText = "Ir a Libros";
-    anchorTestRedirect.href = '../pages/book.html';
-    divTestResult.appendChild(divTestRedirectAnchor);
-    divTestRedirectAnchor.appendChild(anchorTestRedirect);
+    Swal.fire({
+        title: user.showResult(),
+        text: "Explore nuestra selección de libros para mejorar su dieta diaria",
+        icon: "info",
+        showCancelButton: true,
+        confirmButtonText: '<a href="../pages/book.html" style="color: white; text-decoration: none;">Ver Libros</a>',
+        cancelButtonText: "Cancelar"
+    })
 });
+
+//Agrego footer
+const testFooter = document.createElement('footer');
+testFooter.id = 'footer';
+testBody.appendChild(testFooter);
