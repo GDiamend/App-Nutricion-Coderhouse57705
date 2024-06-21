@@ -1,10 +1,12 @@
-//Capturo el id "headerIndex" y le agrego la clase "headerIndex"
-const headerIndex = document.getElementById('headerIndex');
-headerIndex.classList.add('headerIndex');
+const indexBody = document.body;
 
-//Capturo el id "mainIndex" y le agrego la clase mainIndex
+//Creo "headerIndex"
+const headerIndex = document.createElement('header');
+indexBody.appendChild(headerIndex);
+
+//Creo "mainIndex"
 const mainIndex = document.getElementById('mainIndex');
-mainIndex.classList.add('mainIndex');
+indexBody.appendChild(mainIndex);
 
 //Creo un div y un h1
 const divH1Index = document.createElement('div');
@@ -16,3 +18,8 @@ h1Index.innerText = "Planifica tu Dieta con Nuestras Guías de Nutrición";
 //Anido
 mainIndex.appendChild(divH1Index);
 divH1Index.appendChild(h1Index);
+
+//Agrego footer
+const indexFooter = document.createElement('footer');
+indexFooter.id = 'footer';
+indexBody.appendChild(indexFooter);

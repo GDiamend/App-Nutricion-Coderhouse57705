@@ -5,6 +5,10 @@ const bookBody = document.body;
 const bookHeader = document.createElement('header');
 bookBody.appendChild(bookHeader);
 
+//Creo un hr para dar espacio
+const hr = document.createElement('hr');
+bookBody.appendChild(hr)
+
 //Creo el main y lo agrego al body
 const bookMain = document.createElement('main');
 bookBody.appendChild(bookMain);

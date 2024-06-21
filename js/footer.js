@@ -1,6 +1,6 @@
 //Capturo el id "footer" y le agrego la clase "footer"
 const footer = document.getElementById('footer');
-footer.classList.add('footer');
+footer.classList.add('footer', 'mt-4');
 
 //Creo un div y le agrego una clase de bootstrap
 const divFooter = document.createElement('div');
