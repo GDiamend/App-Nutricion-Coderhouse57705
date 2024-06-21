@@ -13,6 +13,7 @@ bookBody.appendChild(bookMain);
 const divBookH1 = document.createElement('div');
 const bookH1 = document.createElement('h1');
 bookH1.innerText = "Encuentra las Mejores Guías y Libros de Alimentación: Mejora tu Dieta Ahora";
+bookH1.classList.add('text-center', 'mt-4');
 bookMain.appendChild(divBookH1);
 divBookH1.appendChild(bookH1);
 
@@ -21,8 +22,10 @@ const divBookList = document.createElement('div');
 const divBookH2 = document.createElement('div');;
 const bookH2List = document.createElement('h2');
 bookH2List.innerText = "Añade a tu Carrito: Guías y Libros para una Mejor Nutrición";
+bookH2List.classList.add('text-center', 'm-4');
 bookMain.appendChild(divBookList);
 divBookList.appendChild(divBookH2);
+divBookList.classList.add('container-fluid', 'row');
 divBookH2.appendChild(bookH2List);
 
 //Creo los productos
@@ -75,28 +78,40 @@ function loadCartFromLocalStorage() {
 
 //Creo un div donde estará la lista de productos
 const divBookProducts = document.createElement('div');
+divBookProducts.classList.add('col-6');
 divBookList.appendChild(divBookProducts);
 
 //Muestra los productos en la página
 function renderProducts() {
     divBookProducts.innerHTML = '';
     products.forEach(product => {
+        const divBuy = document.createElement('div');
+        divBuy.classList.add('container-fluid', 'form-thumbnail', 'imgBg', 'w-50', 'row');
         const productDiv = document.createElement('div');
+        productDiv.classList.add('g-3', 'col-6');
         const pBookCart = document.createElement('p');
         pBookCart.innerText = `${product.name} - $${product.price}`;
+        pBookCart.classList.add('text-center');
+        const divBookButton = document.createElement('div');
+        divBookButton.classList.add('col-6', 'text-center', 'align-items-center', 'justify-content-center');
         const buttonBookCart = document.createElement('button');
+        buttonBookCart.classList.add('btn', 'btnColor', 'animate__animated', 'animate__pulse');
         buttonBookCart.onclick = () => { addToCart(product.id, 1); };
-        buttonBookCart.innerText = 'Agregar al carrito';
+        buttonBookCart.innerText = 'Agregar';
 
-        divBookProducts.appendChild(productDiv);
+        divBookProducts.appendChild(divBuy);
+        divBuy.appendChild(productDiv);
         productDiv.appendChild(pBookCart);
-        productDiv.appendChild(buttonBookCart);
+
+        divBuy.appendChild(divBookButton);
+        divBookButton.appendChild(buttonBookCart);
     })
 }
 
 //Creo un div donde aparecera el carrito
 const divBookCart = document.createElement('div');
 divBookList.appendChild(divBookCart);
+divBookCart.classList.add('col-6');
 
 //Muestra los productos del carro
 function renderCart() {
@@ -138,10 +153,17 @@ function addToCart(productId, quantity) {
     renderCart();
 }
 
+//Creo un div para agregar los botones de compra y vaciar carrito
+const divBookBotones = document.createElement('div');
+divBookList.appendChild(divBookBotones);
+divBookBotones.classList.add('container-fluid', 'row', 'text-center');
+
 //Creo un botón para limpiar el carrito
 function cleanCart() {
     const cleanCartDiv = document.createElement('div');
+    cleanCartDiv.classList.add('col-6', 'text-end');
     const buttonCleanCart = document.createElement('button');
+    buttonCleanCart.classList.add('btn', 'btnColor', 'fs-5', 'animate__animated', 'animate__pulse');
     buttonCleanCart.innerText = 'Vaciar carro';
     buttonCleanCart.onclick = () => {
         Swal.fire({
@@ -159,15 +181,17 @@ function cleanCart() {
         });
     }
 
-    divBookProducts.appendChild(cleanCartDiv);
+    divBookBotones.appendChild(cleanCartDiv);
     cleanCartDiv.appendChild(buttonCleanCart);
 }
 
 //Función para confirmar la compra, en este caso llevará a la página 404
 function buyCart() {
     const buyCartDiv = document.createElement('div');
+    buyCartDiv.classList.add('col-6', 'text-start')
     const buttonCartBuy = document.createElement('button');
     buttonCartBuy.innerText = 'Comprar';
+    buttonCartBuy.classList.add('btn', 'btnColor', 'fs-5', 'animate__animated', 'animate__pulse');
     buttonCartBuy.addEventListener('click', () => {
         Swal.fire({
             title: "Quiere comprar los productos seleccionados?",
@@ -186,7 +210,7 @@ function buyCart() {
 
     });
 
-    divBookProducts.appendChild(buyCartDiv);
+    divBookBotones.appendChild(buyCartDiv);
     buyCartDiv.appendChild(buttonCartBuy);
 }
 
@@ -197,8 +221,6 @@ document.addEventListener('DOMContentLoaded', () => {
     cleanCart();
     buyCart();
 });
-
-
 
 //Agrego footer
 const bookFooter = document.createElement('footer');
