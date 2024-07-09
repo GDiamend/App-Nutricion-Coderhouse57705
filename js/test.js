@@ -178,13 +178,18 @@ testForm.addEventListener('submit', (e) => {
         calculateImc(parseFloat(inputTestWeight.value), parseFloat(inputTestHeight.value))
     );
 
+    //Uso Swal.fire para llevar al usuario a la sección de compras, uso una promesa para redireccionar
     Swal.fire({
         title: user.showResult(),
         text: "Explore nuestra selección de libros para mejorar su dieta diaria",
         icon: "info",
         showCancelButton: true,
-        confirmButtonText: '<a href="../pages/book.html" style="color: white; text-decoration: none;">Ver Libros</a>',
+        confirmButtonText: 'Ver Libros',
         cancelButtonText: "Cancelar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = `./book.html`;
+        }
     })
 });
 

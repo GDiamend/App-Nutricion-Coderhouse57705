@@ -137,7 +137,15 @@ function addToCart(productId, quantity) {
         return;
     };
 
+    Swal.fire({
+        icon: "success",
+        title: "Item agregado",
+        showConfirmButton: false,
+        timer: 900
+    });
+
     const cartItem = cart.find(item => item.id === productId);
+
     if (cartItem) {
         cartItem.quantity += quantity;
         cartItem.totalPrice = cartItem.quantity * cartItem.price;
@@ -189,7 +197,7 @@ function cleanCart() {
     cleanCartDiv.appendChild(buttonCleanCart);
 }
 
-//Función para confirmar la compra, en este caso llevará a la página 404
+//Función para confirmar la compra
 function buyCart() {
     const buyCartDiv = document.createElement('div');
     buyCartDiv.classList.add('col-6', 'text-start')

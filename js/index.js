@@ -48,6 +48,29 @@ mainIndex.appendChild(divVideo);
 divVideo.appendChild(h2Video);
 divVideo.appendChild(iframe);
 
+//Uso asincronía para crear un pop-up, uso una promesa para redireccionar según el resultado
+
+const popUp = setTimeout(() => {
+    Swal.fire({
+        title: "Disfrutando nuestro contenido?",
+        text: "Explore nuestra selección de libros o calcule su IMC en el acto",
+        icon: "info",
+        showCancelButton: true,
+        showDenyButton: true,
+        confirmButtonText: 'Ver Libros',
+        denyButtonText: 'Calcular IMC',
+        cancelButtonText: "Cancelar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = `./pages/book.html`;
+        } else if (result.isDenied) {
+            window.location.href = `./pages/test.html`;
+        }
+    })
+}, 5000);
+
+///`<a href="book.html" style="color: white; text-decoration: none;">Ver Libros</a>`
+
 
 //Agrego footer
 const indexFooter = document.createElement('footer');
