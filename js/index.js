@@ -69,9 +69,6 @@ const popUp = setTimeout(() => {
     })
 }, 5000);
 
-///`<a href="book.html" style="color: white; text-decoration: none;">Ver Libros</a>`
-
-
 //Agrego footer
 const indexFooter = document.createElement('footer');
 indexFooter.id = 'footer';

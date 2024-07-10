@@ -32,40 +32,6 @@ divBookList.appendChild(divBookH2);
 divBookList.classList.add('container-fluid', 'row');
 divBookH2.appendChild(bookH2List);
 
-//Creo los productos
-const products = [
-    {
-        id: 1,
-        name: "Un nuevo mundo de comida sin sal",
-        price: 16999
-    },
-    {
-        id: 2,
-        name: "Comida baja en calorías",
-        price: 12500
-    },
-    {
-        id: 3,
-        name: "Comida saludable para la tercer edad",
-        price: 14000
-    },
-    {
-        id: 4,
-        name: "Guia de ejercicios cardio",
-        price: 22699
-    },
-    {
-        id: 5,
-        name: "Plan de alimentación de 30 días",
-        price: 19999
-    },
-    {
-        id: 6,
-        name: "Como influye la comida en nuestro estado anímico",
-        price: 25000
-    }
-]
-
 //Capto el carro desde el local storage
 let cart = loadCartFromLocalStorage();
 
@@ -85,7 +51,24 @@ const divBookProducts = document.createElement('div');
 divBookProducts.classList.add('col-6');
 divBookList.appendChild(divBookProducts);
 
-//Muestra los productos en la página
+//Creo un array vacío para guardar los productos de la database
+let products = [];
+
+//Obtengo la lista de productos mediante método fetch y los guardo en el array
+function loadProducts() {
+    fetch("../js/database.json")
+        .then(response => response.json())
+        .then(data => {
+            products = data;
+            //Llamo acá a la función render para evitar problemas por la asincronía 
+            renderProducts();
+        })
+        .catch(error => {
+            console.error('Error al cargar los productos:', error);
+        });
+}
+
+//Creo la función donde se van a mostrar los productos de la database guardados en el array
 function renderProducts() {
     divBookProducts.innerHTML = '';
     products.forEach(product => {
@@ -111,6 +94,7 @@ function renderProducts() {
         divBookButton.appendChild(buttonBookCart);
     })
 }
+
 
 //Creo un div donde aparecera el carrito
 const divBookCart = document.createElement('div');
@@ -228,7 +212,7 @@ function buyCart() {
 
 //Asegura que se carguen las cuatro funciones sin esperar a que se cargue el css
 document.addEventListener('DOMContentLoaded', () => {
-    renderProducts();
+    loadProducts();
     renderCart();
     cleanCart();
     buyCart();
