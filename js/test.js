@@ -29,14 +29,6 @@ const divTestForm = document.createElement('div');
 divTestForm.classList.add('container-fluid');
 testMain.appendChild(divTestForm);
 
-// //Creo un div, un h2; le agrego contenido y los anido al div del form
-// const divTestH2Form = document.createElement('div');
-// const h2TestForm = document.createElement('h2');
-// h2TestForm.classList.add('text-center', 'mt-4', 'mb-4');
-// h2TestForm.innerText = "Introduce tus datos al formulario de cálculo de IMC";
-// divTestForm.appendChild(divTestH2Form);
-// divTestH2Form.appendChild(h2TestForm);
-
 //Creo un div para agregar un poco de texto
 const divTestP = document.createElement('div');
 const pTest = document.createElement('p');
